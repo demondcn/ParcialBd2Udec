@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas Propuestas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+
+    <h1 class="text-center mt-5 mb-5 text-primary">Consultas Propuestas</h1>
+
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-lg mb-3 mt-4" onclick="realizarConsulta('a')">Consulta A</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-success btn-lg mb-3 mt-4" onclick="realizarConsulta('b')">Consulta B</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-info btn-lg mb-3 mt-4" onclick="realizarConsulta('c')">Consulta C</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-lg mb-3 mt-4" onclick="realizarConsulta('d')">Consulta D</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mostrar resultados de la consulta -->
+    <div class="container mt-5">
+        <h2 class="text-center">Resultados de la consulta:</h2>
+        <table class="table table-bordered">
+            <thead id="encabezado">
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="resultado"></tbody>
+        </table>
+    </div>
+
+    <!-- Script JavaScript para manejar las consultas AJAX -->
+    <script>
+        function realizarConsulta(consulta) {
+            fetch(`/consulta_${consulta}_resultado`)
+                .then(response => response.json())
+                .then(data => {
+                    // Limpiar la tabla antes de agregar nuevos resultados
+                    document.getElementById('resultado').innerHTML = '';
+
+                    // Actualizar el encabezado de la tabla
+                    const encabezado = document.getElementById('encabezado');
+                    encabezado.innerHTML = ''; // Limpiar el encabezado anterior
+
+                    // Crear el nuevo encabezado según la consulta
+                    const th = document.createElement('th');
+                    th.textContent = obtenerTextoEncabezado(consulta);
+                    const tr = document.createElement('tr');
+                    tr.appendChild(th);
+                    encabezado.appendChild(tr);
+                    
+                    // Crear filas de la tabla con los resultados de la consulta
+                    data.forEach(resultado => {
+                        const row = document.createElement('tr');
+                        for (const key in resultado) {
+                            if (resultado.hasOwnProperty(key)) {
+                                const cell = document.createElement('td');
+                                cell.textContent = resultado[key];
+                                row.appendChild(cell);
+                            }
+                        }
+                        document.getElementById('resultado').appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error al realizar la consulta:', error));
+        }
+
+        // Función auxiliar para obtener el texto del encabezado según la consulta
+        function obtenerTextoEncabezado(consulta) {
+            switch (consulta) {
+                case 'a':
+                    return 'Nombre del Proveedor';
+                case 'b':
+                    return 'Nombre del Artículo';
+                case 'c':
+                    return 'ID del Proveedor - Nombre del Proveedor';
+                case 'd':
+                    return 'Código del Artículo - Nombre del Artículo - Nombre del Proveedor';
+                default:
+                    return '';
+            }
+        }
+    </script>
+    
+</body>
+</html>
