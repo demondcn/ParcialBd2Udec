@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>General</title>
+</head>
+<body>
+    <div class="flex flex-col items-center justify-center h-screen bg-blue-300 dark:bg-blue-300">
+        <div class="container max-w-4xl px-4 py-8 space-y-6">
+          <div class="text-center">
+            <div class="flex items-center justify-between">
+              <h1 class="text-4xl font-bold text-blue-900 dark:text-blue-900">Proveedores y Productos</h1>
+              <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 text-blue-900 dark:text-blue-900">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6"
+                >
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span class="sr-only">Back</span>
+              </button>
+            </div>
+            <p class="text-blue-600 dark:text-blue-600">Gestiona los proveedores y productos registrados</p>
+          </div>
+          <div class="grid grid-cols-1 gap-6">
+            <div class="overflow-x-auto">
+              <table class="w-full table-auto">
+                <thead>
+                  <tr class="bg-blue-700 text-blue-100 dark:bg-blue-700 dark:text-blue-100">
+                    <th class="px-4 py-2 text-left">Nombre</th>
+                    <th class="px-4 py-2 text-left">Teléfono</th>
+                    <th class="px-4 py-2 text-left">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-blue-200 dark:border-blue-800">
+                    <td class="px-4 py-2">Acme Inc.</td>
+                    <td class="px-4 py-2">
+                        <select class="block w-full text-blue-900 dark:text-blue-900 bg-transparent border-b-2 border-blue-500 focus:outline-none focus:border-blue-700">
+                          <option value="">Selecciona teléfono</option>
+                          <option value="telefono1">Teléfono 1</option>
+                          <option value="telefono2">Teléfono 2</option>
+                          <option value="telefono3">Teléfono 3</option>
+                          <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                      </td>
+                      
+                    <td class="px-4 py-2">
+                      <div class="flex items-center gap-2">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path>
+                            <line x1="18" x2="12" y1="9" y2="15"></line>
+                            <line x1="12" x2="18" y1="9" y2="15"></line>
+                          </svg>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-blue-200 dark:border-blue-800">
+                    <td class="px-4 py-2">Globex Corp</td>
+                    <td class="px-4 py-2">
+                        <select class="block w-full text-blue-900 dark:text-blue-900 bg-transparent border-b-2 border-blue-500 focus:outline-none focus:border-blue-700">
+                          <option value="">Selecciona teléfono</option>
+                          <option value="telefono1">Teléfono 1</option>
+                          <option value="telefono2">Teléfono 2</option>
+                          <option value="telefono3">Teléfono 3</option>
+                          <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                      </td>
+                      
+                    <td class="px-4 py-2">
+                      <div class="flex items-center gap-2">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path>
+                            <line x1="18" x2="12" y1="9" y2="15"></line>
+                            <line x1="12" x2="18" y1="9" y2="15"></line>
+                          </svg>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full table-auto">
+                <thead>
+                  <tr class="bg-blue-700 text-blue-100 dark:bg-blue-700 dark:text-blue-100">
+                    <th class="px-4 py-2 text-left">Nombre</th>
+                    <th class="px-4 py-2 text-left">Precio</th>
+                    <th class="px-4 py-2 text-left">Proveedor</th>
+                    <th class="px-4 py-2 text-left">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-blue-200 dark:border-blue-800">
+                    <td class="px-4 py-2">Widget</td>
+                    <td class="px-4 py-2">$9.99</td>
+                    <td class="px-4 py-2">
+                        <select class="block w-full text-blue-900 dark:text-blue-900 bg-transparent border-b-2 border-blue-500 focus:outline-none focus:border-blue-700">
+                          <option value="">Selecciona proveedor</option>
+                          <option value="proveedor1">Proveedor 1</option>
+                          <option value="proveedor2">Proveedor 2</option>
+                          <option value="proveedor3">Proveedor 3</option>
+                          <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                      </td>
+                      
+                    <td class="px-4 py-2">
+                      <div class="flex items-center gap-2">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path>
+                            <line x1="18" x2="12" y1="9" y2="15"></line>
+                            <line x1="12" x2="18" y1="9" y2="15"></line>
+                          </svg>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-blue-200 dark:border-blue-800">
+                    <td class="px-4 py-2">Gadget</td>
+                    <td class="px-4 py-2">$19.99</td>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2">
+                      <div class="flex items-center gap-2">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path>
+                            <line x1="18" x2="12" y1="9" y2="15"></line>
+                            <line x1="12" x2="18" y1="9" y2="15"></line>
+                          </svg>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-blue-200 dark:border-blue-800">
+                    <td class="px-4 py-2">Doohickey</td>
+                    <td class="px-4 py-2">$14.99</td>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2">
+                      <div class="flex items-center gap-2">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path>
+                            <line x1="18" x2="12" y1="9" y2="15"></line>
+                            <line x1="12" x2="18" y1="9" y2="15"></line>
+                          </svg>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-blue-200 dark:border-blue-800">
+                    <td class="px-4 py-2">Thingamajig</td>
+                    <td class="px-4 py-2">$24.99</td>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2">
+                      <div class="flex items-center gap-2">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path>
+                            <line x1="18" x2="12" y1="9" y2="15"></line>
+                            <line x1="12" x2="18" y1="9" y2="15"></line>
+                          </svg>
+                          <span class="sr-only">Edit</span>
+                        </button>
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="w-6 h-6"
+                          >
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                          </svg>
+                          <span class="sr-only">Delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+</body>
+</html>

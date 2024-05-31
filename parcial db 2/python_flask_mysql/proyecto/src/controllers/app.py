@@ -7,12 +7,70 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import Models.database as db
 
-app = Flask(__name__, template_folder='../View')
-
+app = Flask(__name__, template_folder='../View/templates', static_folder='../View/static')
 
 @app.route('/')
 def home():
     return render_template('index.html')
+
+
+
+@app.route('/registrado', methods=['POST'])
+def registrado():
+    if request.method == 'POST':
+        # Obtener datos del formulario de registro
+        nombre = request.form['nombre']
+        correo = request.form['correo']
+        usuario = request.form['usuario']
+        contrasena = request.form['contrasena']
+
+        conn = db.database
+        cursor = conn.cursor()
+
+        try:
+            # Insertar usuario en la base de datos
+            cursor.execute("INSERT INTO usuario (nom, cro, usu, cnt) VALUES (%s, %s, %s, %s)", (nombre, correo, usuario, contrasena))
+            conn.commit()
+            cursor.close()
+
+        except Exception as e:
+            # Manejar errores, por ejemplo, redirigir a una página de error
+            print(f"Error al insertar usuario en la base de datos: {e}")
+            return redirect(url_for('error'))
+
+    # Si se accede a esta ruta de manera directa sin enviar datos, redireccionar a la página principal
+    return redirect(url_for('home'))
+
+@app.route('/login', methods=['POST'])
+def login():
+    if request.method == 'POST':
+        # Obtener datos del formulario de login
+        correo = request.form['correo']
+        contrasena = request.form['contrasena']
+
+        conn = db.database
+        cursor = conn.cursor()
+
+        # Verificar si el usuario y contraseña coinciden con los almacenados en la base de datos
+        cursor.execute("SELECT * FROM usuario WHERE cro = %s AND cnt = %s", (correo, contrasena))
+        user = cursor.fetchone()
+
+        if user:
+            # Si las credenciales son válidas, redireccionar a la página de registro
+            return redirect(url_for('iniciado'))
+        else:
+            # Si las credenciales son inválidas, redireccionar a la página principal
+            return redirect(url_for('home'))
+        
+        cursor.close()
+    else:
+        # Si se accede a esta ruta de manera directa sin enviar datos, redireccionar a la página principal
+        return redirect(url_for('home'))
+
+@app.route('/iniciado')
+def iniciado():
+    return render_template('register.html')
+
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -28,7 +86,15 @@ def consultas():
 
 @app.route('/consultas_page')
 def consultas_page():
-    return render_template('consultas.html')
+    conn = db.database
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Proveedores")
+    proveedores = cursor.fetchall()
+    cursor.execute("SELECT * FROM Articulos")
+    articulos = cursor.fetchall()
+    cursor.close()
+    return render_template('consultas.html', proveedores=proveedores, articulos=articulos)
+
 
 @app.route('/registerPROV', methods=['POST'])
 def registerPROV():
@@ -42,45 +108,13 @@ def registerProv_page():
 def registrarArticulo():
     return redirect(url_for('registerArt_page'))
 
-#####
-@app.route('/consulta_a_resultado')
-def consulta_a_resultado():
-    conn = db.database
-    cursor = conn.cursor()
-    cursor.execute("SELECT Proveedores.nomprov FROM Proveedores JOIN Articulos_Proveedores ON Proveedores.idprov = Articulos_Proveedores.idprov WHERE Articulos_Proveedores.codart = 1;")
-    nombres_proveedores = [row[0] for row in cursor.fetchall()]
-    cursor.close()
-    return jsonify(nombres_proveedores)
+@app.route('/registerArt_page')
+def registerArt_page():
+    return render_template('articulos.html')
 
-@app.route('/consulta_b_resultado')
-def consulta_b_resultado():
-    conn = db.database
-    cursor = conn.cursor()
-    cursor.execute("SELECT Articulos.nomart FROM Articulos JOIN Articulos_Proveedores ON Articulos.codart = Articulos_Proveedores.codart WHERE Articulos_Proveedores.idprov = 10;")
-    nombres_articulos = [row[0] for row in cursor.fetchall()]
-    cursor.close()
-    return jsonify(nombres_articulos)
-
-@app.route('/consulta_c_resultado')
-def consulta_c_resultado():
-    conn = db.database
-    cursor = conn.cursor()
-    cursor.execute("SELECT idprov, nomprov FROM Proveedores;")
-    proveedores = [{'idprov': row[0], 'nomprov': row[1]} for row in cursor.fetchall()]
-    cursor.close()
-    return jsonify(proveedores)
-
-@app.route('/consulta_d_resultado')
-def consulta_d_resultado():
-    conn = db.database
-    cursor = conn.cursor()
-    cursor.execute("SELECT Articulos.codart, Articulos.nomart, Proveedores.nomprov FROM Articulos JOIN Articulos_Proveedores ON Articulos.codart = Articulos_Proveedores.codart JOIN Proveedores ON Articulos_Proveedores.idprov = Proveedores.idprov;")
-    articulos_proveedores = [{'codart': row[0], 'nomart': row[1], 'nomprov': row[2]} for row in cursor.fetchall()]
-    cursor.close()
-    return jsonify(articulos_proveedores)
-
-
-####
+@app.route('/houme', methods=['POST'])
+def houme():
+    return redirect(url_for('home'))
 
 @app.route('/obtenerProveedores')
 def obtenerProveedores():
@@ -147,14 +181,6 @@ def registrarDatosArticulo():
     return redirect(url_for('registerArt_page'))
 
 
-
-@app.route('/registerArt_page')
-def registerArt_page():
-    return render_template('articulos.html')
-
-@app.route('/houme', methods=['POST'])
-def houme():
-    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)

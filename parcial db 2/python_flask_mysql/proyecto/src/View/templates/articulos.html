@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Registrar Artículo</title>
+</head>
+<body>
+    <div class="flex flex-col items-center justify-center h-screen bg-blue-300 dark:bg-blue-300">
+        <div class="container max-w-md px-4 py-8 space-y-6">
+          <div class="text-center">
+            <h1 class="text-4xl font-bold text-blue-900 dark:text-blue-900">Registrar Artículo</h1>
+            <form action="/houme" method="post">
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 text-blue-900 dark:text-blue-900" type="submit">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-6 h-6"
+                  >
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span class="sr-only">Back</span>
+                </button>
+            </form>
+            <p class="text-blue-600 dark:text-blue-600">
+              Completa los siguientes campos para registrar un nuevo artículo
+            </p>
+          </div>
+        <form action="/registrarDatosArticulo" method="post">
+          <div class="grid grid-cols-1 gap-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="col-span-1">
+                <label
+                  class="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-900 dark:text-blue-900 font-medium"
+                  for="nomart"
+                >
+                  Nombre de Artículo
+                </label>
+                <input
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mt-1"
+                  type="text"
+                  id="normat"
+                  name="nomart"
+                  placeholder="Ingresa el nombre del artículo"
+                  required
+                />
+              </div>
+              <div class="col-span-1">
+                <label
+                  class="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-900 dark:text-blue-900 font-medium"
+                  for="pricio"
+                >
+                  Precio de Artículo
+                </label>
+                <input
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mt-1"
+                  id="pricio"
+                  name="precio"
+                  placeholder="Ingresa el precio del artículo"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                class="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-blue-900 dark:text-blue-900 font-medium"
+                for="supplier"
+              >
+                Proveedor
+              </label>
+              <div id="proveedoresContainer">
+                <!-- Los proveedores se cargarán dinámicamente aquí -->
+            </div>
+
+              </select>
+            </div>
+            <div class="flex justify-end">
+                <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-700 hover:bg-blue-600 text-blue-100 dark:bg-blue-700 dark:hover:bg-blue-600">
+                    Registrar Artículo
+                </button>
+
+        </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <script>
+        // Función para cargar proveedores desde la base de datos
+        // Función para cargar proveedores desde la base de datos
+function cargarProveedores() {
+    // Obtener el contenedor de proveedores
+    const proveedoresContainer = document.getElementById('proveedoresContainer');
+
+    // Llamar a la ruta del servidor que devuelve los proveedores desde la base de datos
+    fetch('/obtenerProveedores')
+        .then(response => response.json())
+        .then(data => {
+            // Limpiar contenedor
+            proveedoresContainer.innerHTML = '';
+
+            // Agregar un checkbox por cada proveedor obtenido
+            data.forEach(proveedor => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'proveedor[]'; // Nombre común para todos los checkboxes
+                checkbox.value = proveedor.idprov;
+
+                const label = document.createElement('label');
+                label.textContent = proveedor.nomprov;
+
+                const div = document.createElement('div');
+                div.appendChild(checkbox);
+                div.appendChild(label);
+
+                proveedoresContainer.appendChild(div);
+            });
+        })
+        .catch(error => console.error('Error al obtener los proveedores:', error));
+}
+
+        // Llamar a la función para cargar proveedores cuando se cargue la página
+        window.onload = cargarProveedores;
+    </script>
+    
+</body>
+</html>
